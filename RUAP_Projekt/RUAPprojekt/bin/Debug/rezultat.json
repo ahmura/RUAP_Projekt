@@ -1,0 +1,1 @@
+{"Results":{"output1":{"type":"table","value":{"ColumnNames":["Col1","Col2","Col3","Scored Label Mean","Scored Label Standard Deviation"],"ColumnTypes":["Int32","Int32","Int32","Double","Double"],"Values":[["124124","124214","214214","6476059.35416667","16903.6615255024"]]}}}}
