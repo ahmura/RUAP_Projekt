@@ -11,3 +11,16 @@ c:\users\antonio\documents\visual studio 2015\Projects\RUAPprojekt\RUAPprojekt\o
 c:\users\antonio\documents\visual studio 2015\Projects\RUAPprojekt\RUAPprojekt\obj\Debug\RUAPprojekt.csproj.GenerateResource.Cache
 c:\users\antonio\documents\visual studio 2015\Projects\RUAPprojekt\RUAPprojekt\obj\Debug\RUAPprojekt.exe
 c:\users\antonio\documents\visual studio 2015\Projects\RUAPprojekt\RUAPprojekt\obj\Debug\RUAPprojekt.pdb
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\bin\Debug\RUAPprojekt.exe.config
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\obj\Debug\RUAPprojekt.exe
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\obj\Debug\RUAPprojekt.pdb
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\bin\Debug\RUAPprojekt.exe
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\bin\Debug\RUAPprojekt.pdb
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\obj\Debug\RUAPprojekt.csprojResolveAssemblyReference.cache
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\obj\Debug\RUAPprojekt.Form1.resources
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\obj\Debug\RUAPprojekt.Properties.Resources.resources
+C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAP\RUAP_Projekt\RUAPprojekt\obj\Debug\RUAPprojekt.csproj.GenerateResource.Cache

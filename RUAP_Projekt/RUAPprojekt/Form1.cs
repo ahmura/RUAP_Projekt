@@ -17,6 +17,7 @@ namespace RUAPprojekt
 
     public partial class Form1 : Form
     {
+        public List<string> lista = new List<string>();
 
         public class StringTable
         {
@@ -24,7 +25,12 @@ namespace RUAPprojekt
             public string[,] Values { get; set; }
         }
 
-        public static async Task InvokeRequestResponseService(string key, string dat1, string dat2, string dat3)    //dodani parametri za stvaranje inputa i odabiranje api kljuca za ulaz/izlaz
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        public async Task InvokeRequestResponseService(string key, string dat1, string dat2, string dat3, string dat4)    //dodani parametri za stvaranje inputa i odabiranje api kljuca za ulaz/izlaz
         {
             using (var client = new HttpClient())
             {
@@ -36,8 +42,8 @@ namespace RUAPprojekt
                             "input1",
                             new StringTable()
                             {
-                                ColumnNames = new string[] {"Col1", "Col2", "Col3"},
-                                Values = new string[,] {  { dat1, dat2, dat3 }, }
+                                ColumnNames = new string[] {"datum_predvidjanja", "datum_predvidjanja-1", "datum_predvidjanja-2", "datum_predvidjanja-3"},
+                                Values = new string[,] {  { dat1, dat2, dat3, dat4 }, }
                             }
                         },
                     },
@@ -49,13 +55,13 @@ namespace RUAPprojekt
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
 
-                if(key == "MUBPIvheS07W459cz1sYd7S2uLUuEAju8+3yUcBPJTJbtdSHfq64QKhpVskMfkce5EiyPrZDFKvzb4AWGeB7og==")       //u slucaju da je odabran ulazak putnika
+                if(key == "ReLiTuwKLzIU6fj8Zn0M9YveCnWBXlCGj2k1F1NiY+BeqoMJMek9bU7aNC9ANH6C+kqslBnygpDok/TzzNzglQ==")       //u slucaju da je odabran ulazak putnika
                 {
-                    client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/ca10e95ffa45402cba2785091231bc41/services/3724c966bea44c17981642b147036881/execute?api-version=2.0&details=true");
+                    client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/ca10e95ffa45402cba2785091231bc41/services/f46453a134754fda8367c2b44859ed1f/execute?api-version=2.0&details=true");
                 }
-                else if(key == "fFRaDJSz9XDkGmpFZ6Ui/f9qDldgO+eAu04GQdezxnZ9SROxeiBValm9onIPczsafZQi9J4J1D3psfkmvLxxAQ==")  //u slucaju da je odabran ulazak putnika
+                else if(key == "xrVcnMU4g+BzVVfIvoSWl3ZpSn+kWrNbFIjqxZsT8wxBk6GJtInZ1T7VlG2wKJU2qgYd44YNP0+/mPxhVUbucw==")  //u slucaju da je odabran izlazak putnika
                 {
-                    client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/ca10e95ffa45402cba2785091231bc41/services/c04dd72dd12c4301acc88930803b8958/execute?api-version=2.0&details=true");
+                    client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/ca10e95ffa45402cba2785091231bc41/services/8520f79c8a8d40eca7f264308f2fa1cd/execute?api-version=2.0&details=true");
                 }
                 
                 // WARNING: The 'await' statement below can result in a deadlock if you are calling this code from the UI thread of an ASP.Net application.
@@ -71,7 +77,12 @@ namespace RUAPprojekt
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();
-                    System.IO.File.WriteAllText(@"C:\Users\Antonio\Documents\Visual Studio 2015\Projects\RUAPprojekt\rezultat.json", result); //ispis rezultata predikcije u .json datoteku
+                    
+                    lista = result.Split(',').ToList();
+                    lista[lista.Count - 2] = lista[lista.Count - 2].Replace(".",",");
+                    lista = lista[lista.Count - 2].Split(',').ToList();
+                    lista[0] = lista[0].Remove(0, 1);
+
                     MessageBox.Show("Predviđanje uspješno!");               //prikaz uspješno odrađene predikcije u message box-u
                 }
                 else                //prikaz errora u message box-ovima ako do njih dođe
@@ -88,30 +99,29 @@ namespace RUAPprojekt
             }
         }
 
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        
 
 
         private void doPrediction_Click(object sender, EventArgs e)
         {
             string apikey;
-            string datum1, datum2, datum3;
+            string datum1, datum2, datum3, datum4;
             datum1 = date1.Text.ToString();
             datum2 = date2.Text.ToString();
             datum3 = date3.Text.ToString();
-
+            datum4 = date4.Text.ToString();
 
             if (selectedEntries.Checked == true) //ako je odabran broj ulazaka
             {
-                apikey = "MUBPIvheS07W459cz1sYd7S2uLUuEAju8+3yUcBPJTJbtdSHfq64QKhpVskMfkce5EiyPrZDFKvzb4AWGeB7og==";
-                InvokeRequestResponseService(apikey, datum1, datum2, datum3).Wait();
+                apikey = "ReLiTuwKLzIU6fj8Zn0M9YveCnWBXlCGj2k1F1NiY+BeqoMJMek9bU7aNC9ANH6C+kqslBnygpDok/TzzNzglQ==";
+                InvokeRequestResponseService(apikey, datum1, datum2, datum3, datum4).Wait();
+                rez.Text = lista[0].ToString();
             }
             else if(selectedExits.Checked == true) //ako je odabran broj izlazaka
             {
-                apikey = "fFRaDJSz9XDkGmpFZ6Ui/f9qDldgO+eAu04GQdezxnZ9SROxeiBValm9onIPczsafZQi9J4J1D3psfkmvLxxAQ==";
-                InvokeRequestResponseService(apikey, datum1, datum2, datum3).Wait();
+                apikey = "xrVcnMU4g+BzVVfIvoSWl3ZpSn+kWrNbFIjqxZsT8wxBk6GJtInZ1T7VlG2wKJU2qgYd44YNP0+/mPxhVUbucw==";
+                InvokeRequestResponseService(apikey, datum1, datum2, datum3, datum4).Wait();
+                rez.Text = lista[0].ToString();
             }
             else        //ako nije odabrano niti jedno
             {
@@ -137,6 +147,13 @@ namespace RUAPprojekt
         }
 
         private void date3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void date4_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
